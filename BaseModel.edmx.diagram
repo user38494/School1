@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0e715b87821246bf9d6be9350431b30f" Name="Diagram1">
+        <EntityTypeShape EntityType="School1Model.Class" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="School1Model.Classroom" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="School1Model.Lesson" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="School1Model.Schedule" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="School1Model.sysdiagram" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="School1Model.Teacher" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="School1Model.User" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="School1Model.FK_Schedule_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="School1Model.FK_Schedule_Classroom" ManuallyRouted="false" />
+        <AssociationConnector Association="School1Model.FK_Schedule_Lesson" ManuallyRouted="false" />
+        <AssociationConnector Association="School1Model.FK_Schedule_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="School1Model.LessonClass" ManuallyRouted="false" />
+        <AssociationConnector Association="School1Model.LessonClassroom" ManuallyRouted="false" />
+        <AssociationConnector Association="School1Model.LessonTeacher" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

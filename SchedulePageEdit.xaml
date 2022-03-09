@@ -1,0 +1,40 @@
+﻿<Page x:Class="School1.SchedulePageEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:School1"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="300"
+      VerticalAlignment="Center" HorizontalAlignment="Center"
+      Title="SchedulePageEdit">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Класс" Grid.Row="0"/>
+        <TextBlock Text="Предмет" Grid.Row="1"/>
+        <TextBlock Text="Кабинет" Grid.Row="2"/>
+        <TextBlock Text="Учитель" Grid.Row="3"/>
+
+        <ComboBox Name="CbClass" DisplayMemberPath="Name" SelectedItem="{Binding Class}" Grid.Column="1" Grid.Row="0"/>
+        <ComboBox Name="CbLesson" DisplayMemberPath="Title" SelectedItem="{Binding Lesson}" Grid.Column="1" Grid.Row="1"/>
+        <ComboBox Name="CbClassroom" DisplayMemberPath="Number" SelectedItem="{Binding Classroom}" Grid.Column="1" Grid.Row="2"/>
+        <ComboBox Name="CbTeacher" DisplayMemberPath="Title" SelectedItem="{Binding Teacher}" Grid.Column="1" Grid.Row="3"/>
+        <DatePicker SelectedDate="{Binding Date}" Grid.Row="4" Grid.Column="1"/>
+
+        <Button Content="Сохранить" Grid.ColumnSpan="2" Grid.Row="10" Height="30" Width="175" Name="BtnSave" Click="BtnSave_Click" Margin="0 5" Background="#d4d0d6"></Button>
+    </Grid>
+</Page>

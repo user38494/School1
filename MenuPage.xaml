@@ -1,0 +1,20 @@
+﻿<Page x:Class="School1.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:School1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MenuPage">
+
+    <Grid>
+        <StackPanel Width="200" VerticalAlignment="Center" >
+            <Button Content="Класс" Name="BtnSupp" Click="BtnSupp_Click" Background="#9463d0" FontWeight="Bold"/>
+            <Button Content="Кабинет" Name="BtnSupp1" Click="BtnSupp1_Click" Background="#9463d0" FontWeight="Bold" Margin="0 5"/>
+            <Button Content="Предмет" Name="BtnSupp2" Click="BtnSupp2_Click" Background="#9463d0" FontWeight="Bold"/>
+            <Button Content="Расписание" Name="BtnSupp3" Click="BtnSupp3_Click" Background="#9463d0" FontWeight="Bold" Margin="0 5"/>
+            <Button Content="Учитель" Name="BtnSupp4" Click="BtnSupp4_Click" Background="#9463d0" FontWeight="Bold"/>
+        </StackPanel>
+    </Grid>
+</Page>

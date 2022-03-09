@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище School1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Classroom">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Lesson">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LessonClass">
+    <Key>
+      <PropertyRef Name="ID_lesson" />
+      <PropertyRef Name="ID_class" />
+    </Key>
+    <Property Name="ID_lesson" Type="int" Nullable="false" />
+    <Property Name="ID_class" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LessonClassroom">
+    <Key>
+      <PropertyRef Name="ID_lesson" />
+      <PropertyRef Name="ID_classroom" />
+    </Key>
+    <Property Name="ID_lesson" Type="int" Nullable="false" />
+    <Property Name="ID_classroom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LessonTeacher">
+    <Key>
+      <PropertyRef Name="ID_lesson" />
+      <PropertyRef Name="ID_teacher" />
+    </Key>
+    <Property Name="ID_lesson" Type="int" Nullable="false" />
+    <Property Name="ID_teacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_class" Type="int" Nullable="false" />
+    <Property Name="ID_lesson" Type="int" Nullable="false" />
+    <Property Name="ID_classroom" Type="int" Nullable="false" />
+    <Property Name="ID_teacher" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_LessonClass_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="LessonClass" Type="Self.LessonClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LessonClass">
+        <PropertyRef Name="ID_class" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LessonClass_Lesson">
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+    <End Role="LessonClass" Type="Self.LessonClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lesson">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LessonClass">
+        <PropertyRef Name="ID_lesson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LessonClassroom_Classroom">
+    <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" />
+    <End Role="LessonClassroom" Type="Self.LessonClassroom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classroom">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LessonClassroom">
+        <PropertyRef Name="ID_classroom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LessonClassroom_Lesson">
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+    <End Role="LessonClassroom" Type="Self.LessonClassroom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lesson">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LessonClassroom">
+        <PropertyRef Name="ID_lesson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LessonTeacher_Lesson">
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+    <End Role="LessonTeacher" Type="Self.LessonTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lesson">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LessonTeacher">
+        <PropertyRef Name="ID_lesson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LessonTeacher_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="LessonTeacher" Type="Self.LessonTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LessonTeacher">
+        <PropertyRef Name="ID_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="ID_lesson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Classroom">
+    <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classroom">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="ID_classroom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Lesson">
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lesson">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="ID_lesson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="ID_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище School1ModelContainer">
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Classroom" EntityType="Self.Classroom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LessonClass" EntityType="Self.LessonClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LessonClassroom" EntityType="Self.LessonClassroom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LessonTeacher" EntityType="Self.LessonTeacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_LessonClass_Class" Association="Self.FK_LessonClass_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="LessonClass" EntitySet="LessonClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LessonClass_Lesson" Association="Self.FK_LessonClass_Lesson">
+      <End Role="Lesson" EntitySet="Lesson" />
+      <End Role="LessonClass" EntitySet="LessonClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LessonClassroom_Classroom" Association="Self.FK_LessonClassroom_Classroom">
+      <End Role="Classroom" EntitySet="Classroom" />
+      <End Role="LessonClassroom" EntitySet="LessonClassroom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LessonClassroom_Lesson" Association="Self.FK_LessonClassroom_Lesson">
+      <End Role="Lesson" EntitySet="Lesson" />
+      <End Role="LessonClassroom" EntitySet="LessonClassroom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LessonTeacher_Lesson" Association="Self.FK_LessonTeacher_Lesson">
+      <End Role="Lesson" EntitySet="Lesson" />
+      <End Role="LessonTeacher" EntitySet="LessonTeacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LessonTeacher_Teacher" Association="Self.FK_LessonTeacher_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="LessonTeacher" EntitySet="LessonTeacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Class" Association="Self.FK_Schedule_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Classroom" Association="Self.FK_Schedule_Classroom">
+      <End Role="Classroom" EntitySet="Classroom" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Lesson" Association="Self.FK_Schedule_Lesson">
+      <End Role="Lesson" EntitySet="Lesson" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Teacher" Association="Self.FK_Schedule_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
